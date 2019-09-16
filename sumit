@@ -13,3 +13,35 @@ sqoop list-databases \
   --username retail_user \
   --password itversity \
   --query "select count(1) from order_items"
+
+sqoop import-all-tables \
+  -m 12 \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username=retail_user \
+  --password=itversity \
+  --as-avrodatafile \
+  --warehouse-dir=/user/hive/warehouse/sumit_retail_stage.db
+  
+  sqoop import \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username=retail_user \
+  --password=itversity \
+  --table departments \
+  --as-textfile \
+  --target-dir=/user/sumitpraggya/departments
+  
+   sqoop import \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username=retail_user \
+  --password=itversity \
+  --table departments \
+  --as-sequencefile \
+  --target-dir=/user/sumitpraggya/departments_seq
+  
+  sqoop import \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username=retail_user \
+  --password=itversity \
+  --table departments \
+  --as-avrodatafile \
+  --target-dir=/user/sumitpraggya/departments_avro
