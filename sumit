@@ -1,0 +1,15 @@
+sqoop list-databases \
+  --connect "jdbc:mysql://ms.itversity.com:3306" \
+  --username retail_user \
+  --password itversity
+  
+  sqoop list-tables \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username retail_user \
+  --password itversity
+  
+  sqoop eval \
+  --connect "jdbc:mysql://ms.itversity.com:3306/retail_db" \
+  --username retail_user \
+  --password itversity \
+  --query "select count(1) from order_items"
